@@ -1,16 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
 import easygui
-# import sys
-# import EIGrabClass
 from Tkinter import Tk
 from tkFileDialog import askdirectory
+# import time
+# import os
+# import errno
+# import sys
 
 # print(sys.executable)
 # print(sys.version)
 
 
-# Open inquiery box for URL
+# Open user inquiery box for URL string
 url = easygui.enterbox(
     msg="Paste Table URL here",
     title="Table URL Retrieval",
@@ -20,10 +22,9 @@ url = easygui.enterbox(
 page = requests.get(url)
 # Beginning of Tree Parsing to find specific objects
 soup = BeautifulSoup(page.content, "html.parser")
-
+# Allows user to pick file destination
 Tk().withdraw()
 location = askdirectory()
-
 # Finds all links in page
 RawLinks = soup.find_all("a")
 
@@ -33,4 +34,9 @@ RawLinks = soup.find_all("a")
 # Find maintenance items
 for link in RawLinks:
     if "doku.php?id=item" in link.get("href"):
-        print(link.get("href"))
+        FullUrl = "http://wiki.inovkh.com/" + link.get("href")
+        response = requests.get(FullUrl)
+        print(FullUrl)
+
+
+print(location)

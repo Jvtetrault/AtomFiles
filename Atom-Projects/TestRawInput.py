@@ -1,1 +1,0 @@
-url = raw_input("")
