@@ -3,10 +3,10 @@ import time
 import errno
 import os
 
-class fileGrabber:
-    pic_url = ''
 
-    baseFolder = ''
+def getFile(ChosenUrl, Chosenlocation):
+    baseFolder = Chosenlocation
+    pic_url = ChosenUrl
     datestr = time.strftime("%Y%m%d")
     timestr = time.strftime("%H%M%S") + '.pdf'
 
@@ -27,13 +27,13 @@ class fileGrabber:
 
     # Get the image from the edgeTi web app and save to computed location
     try:
-       response = requests.get(pic_url, stream=True, timeout=2)
+        response = requests.get(pic_url, stream=True, timeout=2)
 
-       if response.ok:
-           with open(fullPicPath, 'wb') as handle:
-               for block in response.iter_content(1024):
-                   if not block:
-                       break
-                   handle.write(block)
+        if response.ok:
+            with open(fullPicPath, 'wb') as handle:
+                for block in response.iter_content(1024):
+                    if not block:
+                        break
+                    handle.write(block)
     except:
         print('fail')
