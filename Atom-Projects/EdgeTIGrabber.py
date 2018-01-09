@@ -18,13 +18,13 @@ def mkdir_p(path):
         else:
             raise
 
-# figure out where to save the screengrab
+#figure out where to save the screengrab
 dayPath = os.path.join(baseFolder, datestr)
 fullPicPath = os.path.join(dayPath, timestr)
 
 mkdir_p(dayPath)
 
-# Get the image from the edgeTi web app and save to computed location
+#Get the image from the edgeTi web app and save to computed location
 try:
    response = requests.get(pic_url, stream=True, timeout=2)
 

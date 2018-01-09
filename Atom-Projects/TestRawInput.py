@@ -1,0 +1,1 @@
+url = raw_input("")
