@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import easygui
 from Tkinter import Tk
 from tkFileDialog import askdirectory
+import fileGrabber
 # import time
 # import os
 # import errno
@@ -35,7 +36,8 @@ RawLinks = soup.find_all("a")
 for link in RawLinks:
     if "doku.php?id=item" in link.get("href"):
         FullUrl = "http://wiki.inovkh.com/" + link.get("href")
-        response = requests.get(FullUrl)
+        response = requests.get(FullUrl, stream=True, timeout=2)
+        fileGrabber.pullFile(FullUrl, location)
         print(FullUrl)
 
 
