@@ -79,9 +79,9 @@ for link in RawLinks:
         # Pull in getFile() object function
         getFile(FullUrl, location)
         # Addition of terminal progress bar
+        # Progress bar taken from https://stackoverflow.com/questions/510348/how-can-i-make-a-time-delay-in-python
         with click.progressbar(length=total_size, label='Downloading files') as bar:
             for file in files:
-                download(file)
                 bar.update(file.size)
         time.sleep(500)
 
