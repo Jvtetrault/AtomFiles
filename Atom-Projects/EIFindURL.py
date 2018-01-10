@@ -1,7 +1,7 @@
 from Tkinter import Tk
 from tkFileDialog import askdirectory
-from bs4 import BeautifulSoup
-from time import sleep
+from bs4 import BeautifulSoup 
+import click  # pip install click to add this module
 import requests
 import easygui
 import time
@@ -72,9 +72,17 @@ def getFile(ChosenUrl, Chosenlocation):
 for link in RawLinks:
     # Find maintenance items
     if "doku.php?id=item" in link.get("href"):
+        # Creates complete URL with export command
         FullUrl = "http://wiki.inovkh.com/" + link.get("href") + "&do=export_pdf"
+        # Tags URL of target file
         response = requests.get(FullUrl, stream=True, timeout=2)
+        # Pull in getFile() object function
         getFile(FullUrl, location)
+        # Addition of terminal progress bar
+        with click.progressbar(length=total_size, label='Downloading files') as bar:
+            for file in files:
+                download(file)
+                bar.update(file.size)
         time.sleep(500)
 
 print(location)
