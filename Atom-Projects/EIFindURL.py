@@ -1,7 +1,7 @@
 from Tkinter import Tk
 from tkFileDialog import askdirectory
-from bs4 import BeautifulSoup 
-import click  # pip install click to add this module
+from bs4 import BeautifulSoup
+# import click
 import requests
 import easygui
 import time
@@ -30,11 +30,12 @@ location = askdirectory()
 RawLinks = soup.find_all("a")
 
 
-def getFile(ChosenUrl, Chosenlocation):
+def getFile(ChosenUrl, Chosenlocation, fileName):
     baseFolder = Chosenlocation
     pic_url = ChosenUrl
+    nfile = fileName + 'pdf'
     datestr = time.strftime("%Y%m%d")
-    timestr = time.strftime("%H%M%S") + '.pdf'
+
 
     def mkdir_p(path):
         try:
@@ -45,18 +46,23 @@ def getFile(ChosenUrl, Chosenlocation):
             else:
                 raise
 
-    # figure out where to save the screengrab
+    # figures out where to place the folder and name it
     dayPath = os.path.join(baseFolder, datestr)
-    fullPicPath = os.path.join(dayPath, timestr)
-
+    # Generates directory with name as timestamp
     mkdir_p(dayPath)
+
+    # Created path for file to be dropped into new directory
+    # Creates path type C:\**Basefolderpath\filename.pdf
+    filePath = os.path.join(dayPath, nfile)
+
+
 
     # Get the image from the edgeTi web app and save to computed location
     try:
-        response = requests.get(pic_url, stream=True, timeout=20)
+        response = requests.get(pic_url, stream=True, timeout=2)
 
         if response.ok:
-            with open(fullPicPath, 'wb') as handle:
+            with open(filePath, 'wb') as handle:
                 for block in response.iter_content(1024):
                     if not block:
                         break
@@ -65,24 +71,13 @@ def getFile(ChosenUrl, Chosenlocation):
         print('fail')
 
 
-
-
-
-# Rolls through each link from the URL page
 for link in RawLinks:
-    # Find maintenance items
-    if "doku.php?id=item" in link.get("href"):
-        # Creates complete URL with export command
+    if "wikilink1" in link.get("class"):
         FullUrl = "http://wiki.inovkh.com/" + link.get("href") + "&do=export_pdf"
         # Tags URL of target file
-        response = requests.get(FullUrl, stream=True, timeout=2)
+        response = requests.get(FullUrl, stream=True, timeout=1000)
+        fileName = link.get("title")
         # Pull in getFile() object function
-        getFile(FullUrl, location)
-        # Addition of terminal progress bar
-        # Progress bar taken from https://stackoverflow.com/questions/510348/how-can-i-make-a-time-delay-in-python
-        with click.progressbar(length=total_size, label='Downloading files') as bar:
-            for file in files:
-                bar.update(file.size)
-        time.sleep(500)
+        getFile(FullUrl, location, fileName)
 
 print(location)

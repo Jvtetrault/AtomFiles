@@ -25,6 +25,7 @@ def getFile(ChosenUrl, Chosenlocation):
 
     mkdir_p(dayPath)
 
+
     # Get the image from the edgeTi web app and save to computed location
     try:
         response = requests.get(pic_url, stream=True, timeout=2)
