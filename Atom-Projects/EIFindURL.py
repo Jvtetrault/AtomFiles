@@ -1,8 +1,9 @@
-import requests
-from bs4 import BeautifulSoup
-import easygui
 from Tkinter import Tk
 from tkFileDialog import askdirectory
+from bs4 import BeautifulSoup
+from time import sleep
+import requests
+import easygui
 import time
 import errno
 import os
