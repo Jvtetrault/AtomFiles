@@ -65,13 +65,16 @@ def getFile(ChosenUrl, Chosenlocation):
         print('fail')
 
 
-# Test Out the code by printing
+
+
+
 # Rolls through each link from the URL page
-# Find maintenance items
 for link in RawLinks:
+    # Find maintenance items
     if "doku.php?id=item" in link.get("href"):
         FullUrl = "http://wiki.inovkh.com/" + link.get("href") + "&do=export_pdf"
         response = requests.get(FullUrl, stream=True, timeout=2)
         getFile(FullUrl, location)
+        time.sleep(500)
 
 print(location)
