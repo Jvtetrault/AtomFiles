@@ -7,10 +7,10 @@ import easygui
 import time
 import errno
 import os
-# import sys
+import sys
 
-# print(sys.executable)
-# print(sys.version)
+print(sys.executable)
+print(sys.version)
 
 
 # Open user inquiery box for URL string
@@ -72,7 +72,7 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
 
 for link in RawLinks:
-    if "wikilink1" in link.get("class"):
+    if "/doku.php?id=item" in link.get("href"):
         FullUrl = "http://wiki.inovkh.com/" + link.get("href") + "&do=export_pdf"
         # Tags URL of target file
         response = requests.get(FullUrl, stream=True, timeout=1000)
