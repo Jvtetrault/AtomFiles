@@ -19,9 +19,9 @@ rows = soup.find_all('tr')
 
 print (rows)
 
-for tr in rows:
-    obj = tr.find_all('td')
-    print(obj)
+# for tr in rows:
+#     obj = tr.find_all('td')
+#     print(obj)
 
 # for tr in rows:
 #     tds = soup.find_all('td')

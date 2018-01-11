@@ -1,4 +1,4 @@
-import tkinter
+from Tkinter import Tk
 import sys
 
 print(sys.executable)

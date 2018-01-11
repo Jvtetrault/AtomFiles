@@ -29,10 +29,6 @@ location = askdirectory()
 # Creates object with all HTML links <a> from URL after passing through requests
 # and BeautifulSoup
 RawLinks = soup.find_all("a")
-RawNames = soup.findChildren("a")
-
-
-print(RawNames)
 
 
 def getFile(ChosenUrl, Chosenlocation, fileName):
