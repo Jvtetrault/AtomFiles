@@ -26,7 +26,7 @@ soup = BeautifulSoup(page.content, "html.parser")
 # Allows user to pick file destination
 Tk().withdraw()
 location = askdirectory()
-# Creates object with all HTML links <a> from URL after passing through requests
+# Creates object with all HTML links <a> from URL after passing through request
 # and BeautifulSoup
 RawLinks = soup.find_all("a")
 
