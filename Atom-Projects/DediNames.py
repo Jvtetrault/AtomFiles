@@ -86,11 +86,11 @@ def test6():
 
 
 def test8():
-    hey = pudding.prettify()
+    hey = page.prettify()
     print(hey)
 
 
-test8()
+test5()
 
 # for tr in rows:
 #     tds = soup.find_all('td')
