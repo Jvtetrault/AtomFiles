@@ -26,7 +26,7 @@ soup = BeautifulSoup(page.content, "html.parser")
 # Allows user to pick file destination
 Tk().withdraw()
 location = askdirectory()
-# Creates object with all HTML links <a> from URL after passing through request
+# Creates object with all HTML links <a> from URL after passing through requests
 # and BeautifulSoup
 RawLinks = soup.find_all("a")
 
@@ -36,7 +36,6 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
     pic_url = ChosenUrl
     nfile = fileName + 'pdf'
     datestr = time.strftime("%Y%m%d")
-
 
     def mkdir_p(path):
         try:
@@ -56,8 +55,6 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
     # Creates path type C:\**Basefolderpath\filename.pdf
     filePath = os.path.join(dayPath, nfile)
 
-
-
     # Get the image from the edgeTi web app and save to computed location
     try:
         response = requests.get(pic_url, stream=True, timeout=2)
@@ -74,6 +71,7 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
 for link in RawLinks:
     if "/doku.php?id=item" in link.get("href"):
+        # Combines into simple read request pulling for pdf export.
         FullUrl = "http://wiki.inovkh.com/" + link.get("href") + "&do=export_pdf"
         # Tags URL of target file
         response = requests.get(FullUrl, stream=True, timeout=1000)

@@ -20,12 +20,77 @@ page = requests.get(url)
 
 soup = BeautifulSoup(page.content, "html.parser")
 
-rowName = soup.find_all('td')
+tdTest = soup.find_all('td')
+AllTitle = soup.find_all('td', "col3")
+AllDura = soup.find_all('td', "col1")
+AllDelay = soup.find_all('td', "col2")
+RawLinks = soup.find_all("a")
 
-for tr in rowName:
-    for td in tr.descendants:
-        print(td)
+# none valid expression, url is not passed yet as HMTL content
+pudding = BeautifulSoup(url, "html.parser")
 
+
+# lobbying = {}
+# for element in tdTest:
+#     lobbying[element.a.get_text()] = {}
+#
+# tdTest[0].a["href"]
+def getLink(name):
+    if link in name.get('href'):
+        if "/doku.php?id=item" in link.get("href"):
+            print(link.get("title"))
+
+# Testing Objects (call these to test different parsing HLTM methods from
+# BeautifulSoup4
+
+
+def test1():
+    for tr in tdTest:
+        for td in tr.descendants:
+            print(td)
+
+# Test 2 <td class="col3">Visual inspection for drops</td>
+
+
+def test2():
+    print(AllTitle)
+
+# Test 3 Prints form <td class="col1"> Daily </td>, <td class="col1 centeralign">
+
+
+def test3():
+    print(AllDura)
+
+# Test 3 Result Link is not defined*
+
+
+def test4():
+    getLink(tdTest)
+
+# Test 5 prints form  <td class="col2"> - </td>, <td class="col2 centeralign">
+
+
+def test5():
+    print(AllDelay)
+
+# Test 6 Will need more time to sift throught output properly
+
+
+def test6():
+    print(RawLinks)
+
+# Test 8 Failed, HTML tree was not printed: USERWARNING: URL looks like a url
+# "Beautiful Soup is not an HTTP client. You should probably use an HTTP client
+# like requests to get the docuement behind the URL, and feed that document to
+# Beatuiful Soup."
+
+
+def test8():
+    hey = pudding.prettify()
+    print(hey)
+
+
+test8()
 
 # for tr in rows:
 #     tds = soup.find_all('td')
