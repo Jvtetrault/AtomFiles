@@ -2,6 +2,9 @@
 import lxml.etree
 import lxml.builder
 from lxml import etree
+from xml.etree.ElementTree import ElementTree
+from xml.etree.ElementTree import Element
+import xml.etree.ElementTree as etree
 
 
 E = lxml.builder.ElementMaker()
@@ -31,3 +34,5 @@ def write(id, period, offset, task, help, url):
 
 
 write(1, 2, 3, 4, 5, 6)
+
+tree.write(open(r 'C:\maintenance.xml', 'w'))
