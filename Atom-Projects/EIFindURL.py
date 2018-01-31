@@ -8,6 +8,7 @@ import time
 import errno
 import os
 import sys
+import Xmlm
 
 print(sys.executable)
 print(sys.version)
@@ -69,14 +70,28 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
         print('fail')
 
 
+
+# Main Script (actuating body)
 for link in RawLinks:
     if "/doku.php?id=item" in link.get("href"):
+
+
         # Combines into simple read request pulling for pdf export.
-        FullUrl = "http://wiki.inovkh.com/" + link.get("href") + "&do=export_pdf"
+        # Seperate forms of URL with/wuthout export function
+        PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
+        FullUrl = PartialUrl + "&do=export_pdf"
+
+
         # Tags URL of target file
         response = requests.get(FullUrl, stream=True, timeout=1000)
         fileName = link.get("title")
+
+
         # Pull in getFile() object function
         getFile(FullUrl, location, fileName)
+
+
+        # Beginning of Testing phase for Xml writting implementation
+        Xmlm.write(1, 2, 3, 4, 'PDF', fileName)
 
 print(location)
