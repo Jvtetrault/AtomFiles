@@ -9,6 +9,7 @@ import errno
 import os
 import sys
 import Xmlm
+import xml.etree.ElemenTree as ET
 
 print(sys.executable)
 print(sys.version)
@@ -92,6 +93,6 @@ for link in RawLinks:
 
 
         # Beginning of Testing phase for Xml writting implementation
-        Xmlm.write(1, 2, 3, 4, 'PDF', fileName)
+        Xmlm.write(0, 0, 0, 0, 'PDF', fileName)
 
 print(location)
