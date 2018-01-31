@@ -73,6 +73,7 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
 
 # Main Script (actuating body)
+
 for link in RawLinks:
     if "/doku.php?id=item" in link.get("href"):
 

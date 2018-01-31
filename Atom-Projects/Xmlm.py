@@ -24,7 +24,7 @@ murl = "https://docs.python.org/2/library/xml.etree.elementtree.html"
 
 def write(id, period, offset, task, help, url):
     Path = "C:/ProgramData/Inovatech Engineering Corp/SteelPRO Director/Documentation/Maintenance/en-US/"
-    Urlcomb = Path + url
+    dest = Path + url
 
     the_doc = ROOT(
         DOC(
@@ -33,14 +33,10 @@ def write(id, period, offset, task, help, url):
             # Offset(str(offset)),
             # Task(str(task)),
             Help(str(help)),
-            URL(str(Urlcomb))
+            URL(str(dest))
         )
     )
 
     print lxml.etree.tostring(the_doc, pretty_print=True)
-
-
-# Testing Parameter
-write(1, 2, 3, 4, 5, murl)
-
-the_doc.write(open(r 'C:\maintenance.xml','w'))
+    print type(lxml.etree.tostring(the_doc, pretty_print=True)
+    print type(the_doc)
