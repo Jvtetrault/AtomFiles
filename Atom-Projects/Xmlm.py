@@ -17,15 +17,17 @@ Task = E.Task
 Help = E.Help
 URL = E.URL
 
+murl = "https://docs.python.org/2/library/xml.etree.elementtree.html"
+
 
 def write(id, period, offset, task, help, url):
     the_doc = ROOT(
         DOC(
-            ID(str(id)),
-            Period(str(period)),
-            Offset(str(offset)),
-            Task(str(task)),
-            Help(str(help)),
+            # ID(str(id)),
+            # Period(str(period)),
+            # Offset(str(offset)),
+            # Task(str(task)),
+            # Help(str(help)),
             URL(str(url))
         )
     )
@@ -33,6 +35,6 @@ def write(id, period, offset, task, help, url):
     print lxml.etree.tostring(the_doc, pretty_print=True)
 
 
-write(1, 2, 3, 4, 5, 6)
+write(1, 2, 3, 4, 5, murl)
 
-tree.write(open(r 'C:\maintenance.xml', 'w'))
+# tree.write(open(r 'C:\maintenance.xml','w'))
