@@ -9,7 +9,7 @@ import errno
 import os
 import sys
 import Xmlm
-import xml.etree.ElemenTree as ET
+
 
 print(sys.executable)
 print(sys.version)

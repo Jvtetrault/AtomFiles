@@ -10,8 +10,8 @@ import os
 import sys
 
 
-print(sys.executable)
-print(sys.version)
+# print(sys.executable)
+# print(sys.version)
 
 
 url = "http://wiki.inovkh.com/doku.php?id=xpr_component_table"
@@ -90,7 +90,21 @@ def test8():
     print(hey)
 
 
-test5()
+def test9():
+    for td in soup.find_all('tr'):
+        print (td.get_text())
+
+def test10():
+    for string in soup.find_all('tr'):
+        for Link in string:
+            print(Link)
+
+def test11():
+    print (soup.find('td', "Visual inspection for drops"))
+
+
+
+test10()
 
 # for tr in rows:
 #     tds = soup.find_all('td')
