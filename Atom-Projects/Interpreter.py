@@ -1,6 +1,7 @@
 # Simple Interpreter object definition for varying text to number conversion
 
 def interpret(string):
+    # Simplying lowered argument value and suppress white spaces
     a = ((string.lower()).replace(" ", "")).strip()
     if a == "daily":
         return 1
@@ -39,4 +40,5 @@ def interpret(string):
     elif a == "1year":
         return 365
     else:
-        print('"'+ string + '" please view documentation of Interpreter: Passed string is outside library of defined passable arguments')
+        # Imprompt to non-stick exception, will have to define Exception block to limit and kill process when exception is thrown.
+        print('"'+ string + '" Is not a passable argument. Please view documentation of Interpreter: Passed string is outside library of defined passable arguments')

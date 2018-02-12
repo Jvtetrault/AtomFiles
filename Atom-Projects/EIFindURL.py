@@ -1,7 +1,6 @@
 from Tkinter import Tk
 from tkFileDialog import askdirectory
 from bs4 import BeautifulSoup
-# import click
 import requests
 import easygui
 import time
@@ -12,8 +11,8 @@ import Xmlm
 import Interpreter as i
 
 
-print(sys.executable)
-print(sys.version)
+# print(sys.executable)
+# print(sys.version)
 
 
 # Open user inquiery box for URL string
@@ -104,11 +103,9 @@ for string in soup.find_all('tr'):
             else:
                 if '<td class="col2' in str(Link):
                     ofs = i.interpret(str(Link.get_text()))
-                    # print(ofs)
                 else:
                     if '<td class="col3">' in str(Link):
                         name = str(Link.get_text())
-                        # print(name)
                         Xmlm.write(Id, dur, ofs, name, 'PDF', Id)
 
         # Beginning of Testing phase for Xml writting implementation
