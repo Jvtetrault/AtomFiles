@@ -94,10 +94,27 @@ def test9():
     for td in soup.find_all('tr'):
         print (td.get_text())
 
+# Test is good. Will use this form to extract all relevant forms.
 def test10():
     for string in soup.find_all('tr'):
         for Link in string:
-            print(Link)
+            if '<td class="col0"><a class="wikilink1" href=' in str(Link):
+                a = str(Link.get_text())
+                # print(a)
+            else:
+                if '<td class="col1">' in str(Link):
+                    dur = str(Link.get_text())
+                    # print(dur)
+                else:
+                    if '<td class="col2">' in str(Link):
+                        ofs = str(Link.get_text())
+                        # print(ofs)
+                    else:
+                        if '<td class="col3">' in str(Link.get_text()):
+                            name = str(Link)
+                            # print(name)
+
+
 
 def test11():
     print (soup.find('td', "Visual inspection for drops"))
