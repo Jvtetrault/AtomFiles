@@ -100,19 +100,16 @@ def test10():
         for Link in string:
             if '<td class="col0"><a class="wikilink1" href=' in str(Link):
                 a = Link
-                print(a)
-            else:
-                if '<td class="col1">' in str(Link):
-                    dur = str(Link)
-                    # print(dur)
-                else:
-                    if '<td class="col2">' in str(Link):
-                        ofs = str(Link)
-                        # print(ofs)
-                    else:
-                        if '<td class="col3">' in str(Link):
-                            name = str(Link)
-                            # print(name)
+                # print(a)
+            elif '<td class="col1' in str(Link):
+                dur = str(Link.get_text())
+                print(dur)
+            elif '<td class="col2' in str(Link):
+                ofs = str(Link.get_text())
+                # print(ofs)
+            elif '<td class="col3">' in str(Link):
+                name = str(Link.get_text())
+                # print(name)
 
 
 def test11():

@@ -1,20 +1,42 @@
+# Simple Interpreter object definition for varying text to number conversion
+
 def interpret(string):
-    if string.lower() == "daily":
+    a = ((string.lower()).replace(" ", "")).strip()
+    if a == "daily":
         return 1
-    elif string.lower() == "weekly":
+    elif a == "weekly":
         return 7
-    elif string.lower() == "bi-weekly":
+    elif a == "bi-weekly":
         return 14
-    elif string.lower() == "monthly":
+    elif a == "monthly":
         return 31
-    elif string.lower() == "semi-Annually":
+    elif a == "semi-Annually":
         return 183
-    elif string.lower() == "yearly":
+    elif a == "yearly":
         return 365
-    elif string.lower() == "1 years":
+    elif a == "1years":
         return 365
-    elif string.lower() == "2 years":
+    elif a == "2years":
         return 730
-    elif string.lower() == "3 years":
+    elif a == "3years":
         return 1095
-    elif string.lower() == "4 years":
+    elif a == "4years":
+        return 1460
+    elif a == "5years":
+        return 1825
+    elif a == "6years":
+        return 2190
+    elif a == "-":
+        return 0
+    elif a == "7Days":
+        return 7
+    elif a == "firstmonth":
+        return 31
+    elif a == "6months":
+        return 186
+    elif a == "9months":
+        return 279
+    elif a == "1year":
+        return 365
+    else:
+        print('"'+ string + '" please view documentation of Interpreter: Passed string is outside library of defined passable arguments')

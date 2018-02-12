@@ -37,7 +37,9 @@ def write(id, period, offset, task, help, name):
     print lxml.etree.tostring(the_doc, pretty_print=True)
     # print type(lxml.etree.tostring(the_doc, pretty_print=True))
 
-# def build():
+def build():
+    
+
 #
 #
 #
