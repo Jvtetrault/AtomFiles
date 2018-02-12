@@ -99,21 +99,20 @@ def test10():
     for string in soup.find_all('tr'):
         for Link in string:
             if '<td class="col0"><a class="wikilink1" href=' in str(Link):
-                a = str(Link.get_text())
-                # print(a)
+                a = Link
+                print(a)
             else:
                 if '<td class="col1">' in str(Link):
-                    dur = str(Link.get_text())
+                    dur = str(Link)
                     # print(dur)
                 else:
                     if '<td class="col2">' in str(Link):
-                        ofs = str(Link.get_text())
+                        ofs = str(Link)
                         # print(ofs)
                     else:
-                        if '<td class="col3">' in str(Link.get_text()):
+                        if '<td class="col3">' in str(Link):
                             name = str(Link)
                             # print(name)
-
 
 
 def test11():

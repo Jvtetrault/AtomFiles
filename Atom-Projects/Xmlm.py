@@ -18,10 +18,6 @@ Help = E.Help
 URL = E.URL
 
 
-# Testing Parameter
-murl = "https://docs.python.org/2/library/xml.etree.elementtree.html"
-
-
 def write(id, period, offset, task, help, name):
     Path = "C:/ProgramData/Inovatech Engineering Corp/SteelPRO Director/Documentation/Maintenance/en-US/"
     dest = str(Path + name)
@@ -38,8 +34,13 @@ def write(id, period, offset, task, help, name):
         )
     )
 
-
     print lxml.etree.tostring(the_doc, pretty_print=True)
-    print type(lxml.etree.tostring(the_doc, pretty_print=True))
+    # print type(lxml.etree.tostring(the_doc, pretty_print=True))
 
-write(0,0,0,0,0,"Hello")
+# def build():
+#
+#
+#
+#
+#
+# write(0,0,0,0,0,"Hello")

@@ -74,26 +74,45 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
 # Main Script (actuating body)
 
-for link in RawLinks:
-    if "/doku.php?id=item" in link.get("href"):
+# for link in RawLinks:
+#     if "/doku.php?id=item" in link.get("href"):
+#
+#
+#         # Combines into simple read request pulling for pdf export.
+#         # Seperate forms of URL with/wuthout export function
+#         PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
+#         FullUrl = PartialUrl + "&do=export_pdf"
+#
+#
+#         # Tags URL of target file
+#         response = requests.get(FullUrl, stream=True, timeout=1000)
+#         fileName = link.get("title")
+#
+#
+#         # Pull in getFile() object function
+#         getFile(FullUrl, location, fileName)
 
 
-        # Combines into simple read request pulling for pdf export.
-        # Seperate forms of URL with/wuthout export function
-        PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
-        FullUrl = PartialUrl + "&do=export_pdf"
-
-
-        # Tags URL of target file
-        response = requests.get(FullUrl, stream=True, timeout=1000)
-        fileName = link.get("title")
-
-
-        # Pull in getFile() object function
-        getFile(FullUrl, location, fileName)
-
+for string in soup.find_all('tr'):
+    for Link in string:
+        if '<td class="col0"><a class="wikilink1" href=' in str(Link):
+            Id = (Link.get_text())
+        else:
+            if '<td class="col1">' in str(Link):
+                dur = str(Link.get_text())
+                # print(dur)
+            else:
+                if '<td class="col2">' in str(Link):
+                    ofs = str(Link.get_text())
+                    # print(ofs)
+                else:
+                    if '<td class="col3">' in str(Link):
+                        name = str(Link.get_text())
+                        # print(name)
+                        Xmlm.write(Id, dur, ofs, name, 'PDF', Id)
 
         # Beginning of Testing phase for Xml writting implementation
-        Xmlm.write(0, 0, 0, 0, 'PDF', fileName)
 
-print(location)
+
+
+# print(location)
