@@ -41,4 +41,5 @@ def interpret(string):
         return 365
     else:
         # Imprompt to non-stick exception, will have to define Exception block to limit and kill process when exception is thrown.
+        # Maybe add an exterior option to modify list when time presents itself to handle new items.
         print('"'+ string + '" Is not a passable argument. Please view documentation of Interpreter: Passed string is outside library of defined passable arguments')

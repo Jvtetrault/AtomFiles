@@ -11,10 +11,6 @@ import Xmlm
 import Interpreter as i
 
 
-# print(sys.executable)
-# print(sys.version)
-
-
 # Open user inquiery box for URL string
 url = easygui.enterbox(
     msg="Paste Table URL here",
@@ -72,25 +68,30 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
 
 
-Main Script (actuating body)
-
-for link in RawLinks:
-    if "/doku.php?id=item" in link.get("href"):
+# Main Script
+    # Download Loop
 
 
-        # Combines into simple read request pulling for pdf export.
-        # Seperate forms of URL with/wuthout export function
-        PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
-        FullUrl = PartialUrl + "&do=export_pdf"
+# for link in RawLinks:
+#     if "/doku.php?id=item" in link.get("href"):
+#
+#
+#         # Combines into simple read request pulling for pdf export.
+#         # Seperate forms of URL with/wuthout export function
+#         PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
+#         FullUrl = PartialUrl + "&do=export_pdf"
+#
+#
+#         # Tags URL of target file
+#         response = requests.get(FullUrl, stream=True, timeout=1000)
+#         fileName = link.get("title")
+#
+#
+#         # Pull in getFile() object function
+#         getFile(FullUrl, location, fileName)
 
 
-        # Tags URL of target file
-        response = requests.get(FullUrl, stream=True, timeout=1000)
-        fileName = link.get("title")
-
-
-        # Pull in getFile() object function
-        getFile(FullUrl, location, fileName)
+    # XML Generation/Appending Loop
 
 
 for string in soup.find_all('tr'):
@@ -108,7 +109,6 @@ for string in soup.find_all('tr'):
                         name = str(Link.get_text())
                         Xmlm.write(Id, dur, ofs, name, 'PDF', Id)
 
-        # Beginning of Testing phase for Xml writting implementation
 
 
 
