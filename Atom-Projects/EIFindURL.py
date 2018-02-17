@@ -69,6 +69,10 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
 
 # Main Script
+
+# Builds blank XML file in the User chosen location.
+maintenancefile = Xmlm.build(location)
+
     # Download Loop
 
 
@@ -107,7 +111,7 @@ for string in soup.find_all('tr'):
                 else:
                     if '<td class="col3">' in str(Link):
                         name = str(Link.get_text())
-                        Xmlm.write(Id, dur, ofs, name, 'PDF', Id)
+                        Xmlm.write1(Id, dur, ofs, name, 'PDF', Id, location)
 
 
 

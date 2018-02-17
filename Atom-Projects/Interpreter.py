@@ -7,11 +7,13 @@ def interpret(string):
         return 1
     elif a == "weekly":
         return 7
+    elif a== "7days":
+        return 7
     elif a == "bi-weekly":
         return 14
     elif a == "monthly":
         return 31
-    elif a == "semi-Annually":
+    elif a == "semi-annually":
         return 183
     elif a == "yearly":
         return 365

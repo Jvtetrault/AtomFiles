@@ -18,9 +18,10 @@ Help = E.Help
 URL = E.URL
 
 
-def write1(id, period, offset, task, help, name):
+def write1(id, period, offset, task, help, name, dest):
     Path = "C:/ProgramData/Inovatech Engineering Corp/SteelPRO Director/Documentation/Maintenance/en-US/"
     dest = str(Path + name)
+
 
     the_doc = ROOT(
         DOC(
@@ -33,12 +34,18 @@ def write1(id, period, offset, task, help, name):
 
         )
     )
-
-
     print lxml.etree.tostring(the_doc, pretty_print=True)
-    # print type(lxml.etree.tostring(the_doc, pretty_print=True))
+    dest.append(ID(str(id)))
 
-def build():
-    ElementTree.write()
 
-build()
+def build(path):
+        destination = path + "\Maintenance.xml"
+        file = open(destination, "w")
+        file.write('<?xml version="1.0" encoding="UTF-8"?>')
+        return str(destination)
+        # root = etree.Element("Tasks")
+        # tree = etree.ElementTree(root)
+        # tree.write("C:/Users/Jonathan Tetrault/Desktop/New folder/filename.xml")
+
+
+print(build("C:\Users\Jonathan Tetrault\Desktop"))
