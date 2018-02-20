@@ -1,7 +1,7 @@
 # Simple Interpreter object definition for varying text to number conversion
 
 def interpret(string):
-    # Simplying lowered argument value and suppress white spaces
+    # Checks argument
     a = ((string.lower()).replace(" ", "")).strip()
     if a == "daily":
         return 1
@@ -11,9 +11,13 @@ def interpret(string):
         return 7
     elif a == "bi-weekly":
         return 14
+    elif a == "biweekly":
+        return 14
     elif a == "monthly":
         return 31
     elif a == "semi-annually":
+        return 183
+    elif a == "semiannually":
         return 183
     elif a == "yearly":
         return 365

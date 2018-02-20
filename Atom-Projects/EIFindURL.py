@@ -55,7 +55,7 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
     # Get the image from the edgeTi web app and save to computed location
     try:
-        response = requests.get(pic_url, stream=True, timeout=2)
+        response = requests.get(pic_url, stream=True, timeout=100)
 
         if response.ok:
             with open(filePath, 'wb') as handle:
@@ -77,23 +77,24 @@ print(maintenancefile)
     # Download Loop
 
 
-# for link in RawLinks:
-#     if "/doku.php?id=item" in link.get("href"):
-#
-#
-#         # Combines into simple read request pulling for pdf export.
-#         # Seperate forms of URL with/wuthout export function
-#         PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
-#         FullUrl = PartialUrl + "&do=export_pdf"
-#
-#
-#         # Tags URL of target file
-#         response = requests.get(FullUrl, stream=True, timeout=1000)
-#         fileName = link.get("title")
-#
-#
-#         # Pull in getFile() object function
-#         getFile(FullUrl, location, fileName)
+for link in RawLinks:
+    if "/doku.php?id=item" in link.get("href"):
+
+
+        # Combines into simple read request pulling for pdf export.
+        # Seperate forms of URL with/wuthout export function
+        PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
+        FullUrl = PartialUrl + "&do=export_pdf"
+
+
+        # Tags URL of target file
+        response = requests.get(FullUrl, stream=True, timeout=1000)
+        fileName = link.get("title")
+
+
+        # Pull in getFile() object function
+        getFile(FullUrl, location, fileName)
+        print("Item: " + fileName + " Downloaded.")
 
 
     # XML Generation/Appending Loop
@@ -112,7 +113,9 @@ for string in soup.find_all('tr'):
                 else:
                     if '<td class="col3">' in str(Link):
                         name = str(Link.get_text())
-                        Xmlm.write1(Id, dur, ofs, name, 'PDF', Id, maintenancefile)
+                        Xmlm.write1(str(Id), str(dur), str(ofs), str(name), 'PDF', str(Id), maintenancefile)
+Xmlm.finish(maintenancefile)
+print("Maintenance.xml file created.")
 
 
 
