@@ -9,6 +9,7 @@ import os
 import sys
 import Xmlm
 import Interpreter as i
+import Load
 
 
 # Open user inquiery box for URL string
@@ -53,26 +54,26 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
     # Creates path type C:\**Basefolderpath\filename.pdf
     filePath = os.path.join(dayPath, nfile)
 
+    Load.pbar(filePath, pic_url)
     # Get the image from the edgeTi web app and save to computed location
-    try:
-        response = requests.get(pic_url, stream=True, timeout=100)
+    # try:
+    #     response = requests.get(pic_url, stream=True, timeout=100)
+    #
+    #     if response.ok:
+    #         with open(filePath, 'wb') as handle:
+    #             for block in response.iter_content(1024):
+    #                 if not block:
+    #                     break
+    #                 handle.write(block)
+    # except:
+    #     print('fail')
 
-        if response.ok:
-            with open(filePath, 'wb') as handle:
-                for block in response.iter_content(1024):
-                    if not block:
-                        break
-                    handle.write(block)
-    except:
-        print('fail')
 
 
 
 # Main Script
 
-# Builds blank XML file in the User chosen location.
-maintenancefile = str(Xmlm.build(location))
-print(maintenancefile)
+
 
     # Download Loop
 
@@ -84,7 +85,7 @@ for link in RawLinks:
         # Combines into simple read request pulling for pdf export.
         # Seperate forms of URL with/wuthout export function
         PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
-        FullUrl = PartialUrl + "&do=export_pdf"
+        FullUrl = PartialUrl  + "&do=export_pdf"
 
 
         # Tags URL of target file
@@ -97,9 +98,14 @@ for link in RawLinks:
         print("Item: " + fileName + " Downloaded.")
 
 
-    # XML Generation/Appending Loop
 
 
+# Builds blank XML file in the User chosen location.
+maintenancefile = str(Xmlm.build(location))
+print(maintenancefile)
+
+
+# XML Generation/Appending Loop
 for string in soup.find_all('tr'):
     for Link in string:
         if '<td class="col0"><a class="wikilink1" href=' in str(Link):
