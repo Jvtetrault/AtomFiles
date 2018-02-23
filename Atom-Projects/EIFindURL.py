@@ -54,19 +54,19 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
     # Creates path type C:\**Basefolderpath\filename.pdf
     filePath = os.path.join(dayPath, nfile)
 
-    Load.pbar(filePath, pic_url)
+    # Load.pbar(filePath, pic_url)
     # Get the image from the edgeTi web app and save to computed location
-    # try:
-    #     response = requests.get(pic_url, stream=True, timeout=100)
-    #
-    #     if response.ok:
-    #         with open(filePath, 'wb') as handle:
-    #             for block in response.iter_content(1024):
-    #                 if not block:
-    #                     break
-    #                 handle.write(block)
-    # except:
-    #     print('fail')
+    try:
+        response = requests.get(pic_url, stream=True, timeout=100)
+
+        if response.ok:
+            with open(filePath, 'wb') as handle:
+                for block in response.iter_content(1024):
+                    if not block:
+                        break
+                    handle.write(block)
+    except:
+        print('fail')
 
 
 
