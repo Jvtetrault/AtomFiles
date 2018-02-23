@@ -10,21 +10,45 @@ import sys
 import Xmlm
 import Interpreter as i
 import Load
+import argparse
+
+
+if __name__=="__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("url", help="Provide Table destination URL from DocuWiki")
+    parser.add_argument("destination", help="Provide destination for the XML and PDF files to download")
+
+    args = parser.parse_args()
+
+    url = args.url
+    location = args.destination
+
+else:
+    url = easygui.enterbox(
+        msg="Paste Table URL here",
+        title="Table URL Retrieval",
+        strip=True,
+        default="")
+
+    Tk().withdraw()
+    location = askdirectory()
 
 
 # Open user inquiery box for URL string
-url = easygui.enterbox(
-    msg="Paste Table URL here",
-    title="Table URL Retrieval",
-    strip=True,
-    default="")
+# url = easygui.enterbox(
+#     msg="Paste Table URL here",
+#     title="Table URL Retrieval",
+#     strip=True,
+#     default="")
+
+
 # Transforms HTML Tree into easily navigatable Python Tree.
 page = requests.get(url)
 # Beginning of Tree Parsing to find specific objects
 soup = BeautifulSoup(page.content, "html.parser")
 # Allows user to pick file destination
-Tk().withdraw()
-location = askdirectory()
+# Tk().withdraw()
+# location = askdirectory()
 # Creates object with all HTML links <a> from URL after passing through requests
 # and BeautifulSoup
 RawLinks = soup.find_all("a")
