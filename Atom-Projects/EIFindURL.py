@@ -80,6 +80,7 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
 
     # Load.pbar(filePath, pic_url)
     # Get the image from the edgeTi web app and save to computed location
+
     try:
         response = requests.get(pic_url, stream=True, timeout=100)
 
