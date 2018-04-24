@@ -13,6 +13,8 @@ import Load
 import argparse
 
 
+# Function to accept URL and Destination folder arguments
+
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("url", help="Provide Table destination URL from DocuWiki")
@@ -54,10 +56,11 @@ soup = BeautifulSoup(page.content, "html.parser")
 RawLinks = soup.find_all("a")
 
 
+# Main Download function
 def getFile(ChosenUrl, Chosenlocation, fileName):
     baseFolder = Chosenlocation
     pic_url = ChosenUrl
-    nfile = fileName + 'pdf'
+    nfile = fileName + '.pdf'
     datestr = time.strftime("%Y%m%d")
 
     def mkdir_p(path):
@@ -143,12 +146,7 @@ for string in soup.find_all('tr'):
                     ofs = i.interpret(str(Link.get_text()))
                 else:
                     if '<td class="col3">' in str(Link):
-                        name = str(Link.get_text())
-                        Xmlm.write1(str(Id), str(dur), str(ofs), str(name), 'PDF', str(Id), maintenancefile)
+                        name = Link.get_text()
+                        Xmlm.write1(Id, dur, ofs, name, 'PDF', Id, maintenancefile)
 Xmlm.finish(maintenancefile)
 print("Maintenance.xml file created.")
-
-
-
-
-# print(location)

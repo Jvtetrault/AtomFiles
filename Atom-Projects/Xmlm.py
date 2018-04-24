@@ -21,8 +21,13 @@
 def write1(id, period, offset, task, help, name, files):
     Path = "C:/ProgramData/Inovatech Engineering Corp/SteelPRO Director/Documentation/Maintenance/en-US/"
     dest = str(Path + name)
+    ID8 = str(id.encode("utf-8"))
+    PER8 = str(period)
+    OFF8 = str(offset)
+    TAS8 = task.encode("utf-8")
+    HEL8 = help
 
-    items = [id, period, offset, task, help, dest]
+    items = [ID8, PER8, OFF8, TAS8, HEL8, dest]
     titles = ["ID", "Period", "Offset", "Task", "Help", "URL"]
 
     # openfile = open(files, 'a')
