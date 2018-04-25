@@ -60,8 +60,8 @@ RawLinks = soup.find_all("a")
 def getFile(ChosenUrl, Chosenlocation, fileName):
     baseFolder = Chosenlocation
     pic_url = ChosenUrl
-    nfile = fileName + '.pdf'
-    datestr = time.strftime("%Y%m%d")
+    nfile = fileName.replace("item_", "") + '.pdf'
+    datestr = "en-US"
 
     def mkdir_p(path):
         try:

@@ -21,10 +21,11 @@
 def write1(id, period, offset, task, help, name, files):
     Path = "C:/ProgramData/Inovatech Engineering Corp/SteelPRO Director/Documentation/Maintenance/en-US/"
     dest = str(Path + name)
+    newtask = task.replace("&", "and")
     ID8 = str(id.encode("utf-8"))
     PER8 = str(period)
     OFF8 = str(offset)
-    TAS8 = task.encode("utf-8")
+    TAS8 = newtask.encode("utf-8")
     HEL8 = help
 
     items = [ID8, PER8, OFF8, TAS8, HEL8, dest]
