@@ -123,7 +123,7 @@ for link in RawLinks:
 
         # Pull in getFile() object function
         getFile(FullUrl, location, fileName)
-        print("Item: " + fileName + " Downloaded.")
+        print("Item: " + fileName.replace("item_", "") + " Downloaded.")
 
 
 
