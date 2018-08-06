@@ -54,6 +54,7 @@ soup = BeautifulSoup(page.content, "html.parser")
 # Creates object with all HTML links <a> from URL after passing through requests
 # and BeautifulSoup
 RawLinks = soup.find_all("a")
+items = list(range(0, RawLinks.links))
 
 
 # Main Download function
@@ -85,7 +86,7 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
     # Get the image from the edgeTi web app and save to computed location
 
     try:
-        response = requests.get(pic_url, stream=True, timeout=100)
+        response = requests.get(pic_url, stream=True, timeout=200)
 
         if response.ok:
             with open(filePath, 'wb') as handle:

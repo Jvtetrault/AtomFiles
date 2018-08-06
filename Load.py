@@ -1,16 +1,20 @@
-# from clint.textui import progress
-# import requests
-#
-#
-# def pbar(path, url):
-#     r = requests.get(url, stream=True)
-#     if r.ok:
-#         with open(path, 'wb') as f:
-#             total_length = int(r.headers.get('content-length'))
-#             centilength = total_length/100
-#             for chunk in progress.bar(r.iter_content(chunk_size=centilength), expected_size=(centilength) + 1):
-#                 if chunk:
-#                     f.write(chunk)
-#                     f.flush()
-#     else:
-#         print("Failed to download: " + str(path))
+# Print iterations progress
+def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iteration   - Required  : current iteration (Int)
+        total       - Required  : total iterations (Int)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+        decimals    - Optional  : positive number of decimals in percent complete (Int)
+        length      - Optional  : character length of bar (Int)
+        fill        - Optional  : bar fill character (Str)
+    """
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filledLength = int(length * iteration // total)
+    bar = fill * filledLength + '-' * (length - filledLength)
+    print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix), end = '\r')
+    # Print New Line on Complete
+    if iteration == total:
+        print()
