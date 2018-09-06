@@ -49,7 +49,14 @@ def plot(series, xaxis=3000, yaxis=6, userLabel='Label'):
     axes.set_xlim([0,xaxis])
     axes.set_ylim([0,yaxis])
     plt.grid(True)
+    XBestFit(series)
     plt.show()
+
+def XBestFit(data):
+    mean = np.mean(data, axis=1)
+    plt.axhline(y=mean)
+
+
 
 corrected = smoothen(reject_outliers(np.array(newArray)))
 print(turnpoint(corrected))
