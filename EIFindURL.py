@@ -11,6 +11,7 @@ import Xmlm
 import Interpreter as i
 import Load
 import argparse
+import subprocess
 
 
 # Function to accept URL and Destination folder arguments
@@ -81,20 +82,20 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
     # Creates path type C:\**Basefolderpath\filename.pdf
     filePath = os.path.join(dayPath, nfile)
 
-    # Load.pbar(filePath, pic_url)
-    # Get the image from the edgeTi web app and save to computed location
+    # See Load object for dowload mechanism and progress display
 
-    try:
-        response = requests.get(pic_url, stream=True, timeout=100)
-
-        if response.ok:
-            with open(filePath, 'wb') as handle:
-                for block in response.iter_content(1024):
-                    if not block:
-                        break
-                    handle.write(block)
-    except:
-        print('fail')
+    Load.pbar(filePath, pic_url)
+    # try:
+    #     response = requests.get(pic_url, stream=True, timeout=100)
+    #
+    #     if response.ok:
+    #         with open(filePath, 'wb') as handle:
+    #             for block in response.iter_content(1024):
+    #                 if not block:
+    #                     break
+    #                 handle.write(block)
+    # except:
+    #     print('fail')
 
 
 
@@ -153,3 +154,5 @@ for string in soup.find_all('tr'):
                         Xmlm.write1(Id, dur, ofs, name, 'PDF', Id, maintenancefile)
 Xmlm.finish(maintenancefile)
 print("Maintenance.xml file created.")
+
+subprocess.Popen(r'explorer /select,' + location + "\en-US")
