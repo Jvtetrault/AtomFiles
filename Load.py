@@ -21,9 +21,8 @@ def pbar(path, url):
                     dl += len(data)
                     f.write(data)
                     done = int(50*dl/total_length)
-                    sys.stdout.write("\r[%s%s]" % ('=' * done, ' '*(50-done)))
+                    sys.stdout.write("\r[%s%s]" % ('#' * done, ' '*(50-done)))
                     sys.stdout.flush()
-            centilength = total_length/100
             # for chunk in progress.bar(response.iter_content(chunk_size=centilength), expected_size=(centilength) + 1):
             #     if chunk:
             #         f.write(chunk)

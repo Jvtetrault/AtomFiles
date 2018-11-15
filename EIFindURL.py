@@ -114,7 +114,7 @@ for link in RawLinks:
         # Combines into simple read request pulling for pdf export.
         # Seperate forms of URL with/wuthout export function
         PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
-        FullUrl = PartialUrl  + "&do=export_pdf"
+        FullUrl = PartialUrl + "&do=export_pdf"
 
 
         # Tags URL of target file
