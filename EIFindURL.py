@@ -11,38 +11,37 @@ import Xmlm
 import Interpreter as i
 import Load
 import argparse
-import subprocess
 
 
 # Function to accept URL and Destination folder arguments
 
-if __name__=="__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("url", help="Provide Table destination URL from DocuWiki")
-    parser.add_argument("destination", help="Provide destination for the XML and PDF files to download")
-
-    args = parser.parse_args()
-
-    url = args.url
-    location = args.destination
-
-else:
-    url = easygui.enterbox(
-        msg="Paste Table URL here",
-        title="Table URL Retrieval",
-        strip=True,
-        default="")
-
-    Tk().withdraw()
-    location = askdirectory()
+# if __name__=="__main__":
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("url", help="Provide Table destination URL from DocuWiki")
+#     parser.add_argument("destination", help="Provide destination for the XML and PDF files to download")
+#
+#     args = parser.parse_args()
+#
+#     url = args.url
+#     location = args.destination
+#
+# else:
+#     url = easygui.enterbox(
+#         msg="Paste Table URL here",
+#         title="Table URL Retrieval",
+#         strip=True,
+#         default="")
+#
+#     Tk().withdraw()
+#     location = askdirectory()
 
 
 # Open user inquiery box for URL string
-# url = easygui.enterbox(
-#     msg="Paste Table URL here",
-#     title="Table URL Retrieval",
-#     strip=True,
-#     default="")
+url = easygui.enterbox(
+    msg="Paste Table URL here",
+    title="Table URL Retrieval",
+    strip=True,
+    default="")
 
 
 # Transforms HTML Tree into easily navigatable Python Tree.
@@ -50,8 +49,8 @@ page = requests.get(url)
 # Beginning of Tree Parsing to find specific objects
 soup = BeautifulSoup(page.content, "html.parser")
 # Allows user to pick file destination
-# Tk().withdraw()
-# location = askdirectory()
+Tk().withdraw()
+location = askdirectory()
 # Creates object with all HTML links <a> from URL after passing through requests
 # and BeautifulSoup
 RawLinks = soup.find_all("a")
@@ -82,9 +81,9 @@ def getFile(ChosenUrl, Chosenlocation, fileName):
     # Creates path type C:\**Basefolderpath\filename.pdf
     filePath = os.path.join(dayPath, nfile)
 
-    # See Load object for dowload mechanism and progress display
-
     Load.pbar(filePath, pic_url)
+    # Get the image from the edgeTi web app and save to computed location
+
     # try:
     #     response = requests.get(pic_url, stream=True, timeout=100)
     #
@@ -114,7 +113,7 @@ for link in RawLinks:
         # Combines into simple read request pulling for pdf export.
         # Seperate forms of URL with/wuthout export function
         PartialUrl = "http://wiki.inovkh.com/" + link.get("href")
-        FullUrl = PartialUrl + "&do=export_pdf"
+        FullUrl = PartialUrl  + "&do=export_pdf"
 
 
         # Tags URL of target file
@@ -154,5 +153,3 @@ for string in soup.find_all('tr'):
                         Xmlm.write1(Id, dur, ofs, name, 'PDF', Id, maintenancefile)
 Xmlm.finish(maintenancefile)
 print("Maintenance.xml file created.")
-
-subprocess.Popen(r'explorer /select,' + location + "\en-US")
