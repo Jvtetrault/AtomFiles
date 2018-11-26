@@ -141,13 +141,11 @@ maintenancefile = str(Xmlm.build(location))
 print(maintenancefile)
 
 
-# XML Generation/Appending Loop
 for string in soup.find_all('tr'):
     for Link in string:
-        if '<td class="col0"><a class="wikilink1" href=' in str(Link):
 
-            temp = link.get("title")
-            Id = (fileName.replace("item_", ""))
+        if '<td class="col0"><a class="wikilink1" href="/doku.php?id=' in str(Link):
+            Id = (str(Link.find('a').get("title")).replace("item_", ""))
             print(Id)
         else:
             if '<td class="col1' in str(Link):
