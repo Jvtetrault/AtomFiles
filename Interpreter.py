@@ -59,5 +59,8 @@ def interpret(string):
         return 2190
     elif a == "5years":
         return 1825
+    elif a == "asneeded":
+        return 7
     else:
         print('('+ string + ') Is not a passable argument. Please view documentation of Interpreter: Passed string is outside library of defined passable arguments')
+        return 30
